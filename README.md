@@ -20,7 +20,7 @@ Initialize on target folder:
 Initialize with a project name and a target folder: 
 - `tomifier init --name myproject1 --output target_folder/`
 
-## 
+## Created files
 
 The CLI will create the following files and folder structure locally or at the target folder:
 

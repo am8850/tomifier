@@ -10,7 +10,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "<name>"
+name = "<package_name>"
 authors = [
   { name="<author>", email="<email>" },
 ]

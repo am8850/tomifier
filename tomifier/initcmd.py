@@ -38,6 +38,9 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
         :param description: The description    
     """
     click.echo(f'Creating package: {package_name}')
+
+    package_name_stripped = package_name.replace("-", "").replace("_", "")
+
     if output_folder:
         # Create folder
         if output_folder != "." and not os.path.exists(output_folder):
@@ -48,33 +51,36 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
         write_bytes(f'{output_folder}/LICENSE', LICENSE_TXT)
         write_bytes(f'{output_folder}/README.md', README_MD)
         write_bytes(f'{output_folder}/MANIFEST.in',
-                    MANIFEST.replace("<name>", package_name))
+                    MANIFEST.replace("<name>", package_name_stripped))
         write_bytes(f'{output_folder}/setup.py', SETUP_PY)
         write_bytes(f'{output_folder}/build.sh',
-                    BUILD_SCRIPT.replace("<name>", package_name))
+                    BUILD_SCRIPT.replace("<name>", package_name_stripped))
 
         dependencies = __list_str(required_packages)
-        proj_toml = PYPROJECT.replace("<name>", package_name).replace("<author>", author).replace("<email>", email).replace(
-            "<DEPS>", dependencies).replace("<home_page>", homepage).replace("<description>", description)
+        proj_toml = PYPROJECT.replace("<package_name>", package_name).replace("<author>", author).replace("<email>", email).replace(
+            "<DEPS>", dependencies).replace("<home_page>", homepage).replace("<description>", description).replace("<name>", package_name_stripped)
         write_bytes(f'{output_folder}/pyproject.toml', proj_toml)
 
         # Create the project files
-        os.makedirs(f'{output_folder}/{package_name}', exist_ok=True)
-        write_text(f'{output_folder}/{package_name}/__init__.py', '')
-        write_bytes(f'{output_folder}/{package_name}/version.py', VERSION_PY)
-
-        os.makedirs(f'{output_folder}/{package_name}/cmd', exist_ok=True)
-        write_bytes(f'{output_folder}/{package_name}/cmd/__init__.py', INIT_PY)
-        write_bytes(f'{output_folder}/{package_name}/cmd/root.py',
-                    ROOT_PY.replace("<name>", package_name))
+        os.makedirs(f'{output_folder}/{package_name_stripped}', exist_ok=True)
+        write_text(f'{output_folder}/{package_name_stripped}/__init__.py', '')
+        write_bytes(
+            f'{output_folder}/{package_name_stripped}/version.py', VERSION_PY)
 
         os.makedirs(
-            f'{output_folder}/{package_name}/cmd/static', exist_ok=True)
+            f'{output_folder}/{package_name_stripped}/cmd', exist_ok=True)
         write_bytes(
-            f'{output_folder}/{package_name}/cmd/static/index.html', INDEX_HTML)
+            f'{output_folder}/{package_name_stripped}/cmd/__init__.py', INIT_PY)
+        write_bytes(f'{output_folder}/{package_name_stripped}/cmd/root.py',
+                    ROOT_PY.replace("<name>", package_name_stripped))
+
+        os.makedirs(
+            f'{output_folder}/{package_name_stripped}/cmd/static', exist_ok=True)
+        write_bytes(
+            f'{output_folder}/{package_name_stripped}/cmd/static/index.html', INDEX_HTML)
 
         # report creation
-        validation = file_exits_validator(output_folder, package_name)
+        validation = file_exits_validator(output_folder, package_name_stripped)
         if validation:
             if output_folder != ".":
                 click.echo(f"New project iniatialized at: {output_folder}")
@@ -105,7 +111,7 @@ def init(name: str, output: str):
     email = click.prompt('Author email', default='name@email.com')
     homepage = click.prompt('Homepage', default='https://github/usernane/repo')
     packages = click.prompt('Comma separated packages (space=None)',
-                            default='click, fastapi, unvicorn[standard]')
+                            default='click, fastapi, uvicorn[standard]')
 
     confirm = click.confirm("Ready to inialize project. Proceed", default=True)
     if not confirm:

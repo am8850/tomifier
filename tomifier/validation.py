@@ -1,13 +1,15 @@
 import os
 import re
 
-def package_name_validator(s:str) -> bool:
+
+def package_name_validator(s: str) -> bool:
     pattern = r"^[a-zA-Z][a-zA-Z0-9_-]*$"
     if re.match(pattern, s):
         return True
     return False
 
-def file_exits_validator(output: str,name: str) -> bool:
+
+def file_exits_validator(output: str, name: str) -> bool:
     return os.path.isfile(f'{output}/LICENSE') \
         and os.path.isfile(f'{output}/README.md') \
         and os.path.isfile(f'{output}/setup.py') \

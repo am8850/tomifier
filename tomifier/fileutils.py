@@ -7,6 +7,7 @@ def write_text(file_path: str, content: str) -> None:
     with open(f'{file_path}', 'w') as f:
         f.write(content)
 
+
 def write_bytes(file_path: str, content: str) -> None:
     """
     Write bytes to a file

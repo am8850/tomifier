@@ -51,7 +51,7 @@ namespaces = false
 <name> = "<name>.cmd.root:main"
 '''
 
-BUILD_SCRIPT='''# Build and install the package locally
+BUILD_SCRIPT = '''# Build and install the package locally
 python -m build && pip install -e .
 
 # Test the package
@@ -90,7 +90,7 @@ if __name__ == "__main__":
     main()
 '''
 
-VERSION_PY ='''version="0.0.1"
+VERSION_PY = '''version="0.0.1"
 __version__ = version
 VERSION=version
 '''

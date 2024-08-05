@@ -1,6 +1,9 @@
 # tomifier
 
-A CLI to initialize a simple Python pyproject.toml file with a simple executable CLI that can launch a web UI.
+`pyproject.toml` is a modern way to create a python package. `tomifier` is CLI to initialize a simple Python pyproject.toml file and starting code. The starting code is itself a CLI that can launch a web application.
+
+References:
+[pyproject.toml vs setup.py](https://packaging.python.org/en/latest/guides/modernize-setup-py-project/)
 
 ## Installation
 
@@ -12,9 +15,9 @@ Initialize on current Folder:
 - `tomifier init`
 
 Initialize on target folder: 
-- `tomifier init --output target_folder/`
+- `tomifier init -o target_folder/`
 
-Initialize on with a project name and a target folder: 
+Initialize with a project name and a target folder: 
 - `tomifier init --name myproject1 --output target_folder/`
 
 ## Files created
@@ -22,17 +25,20 @@ Initialize on with a project name and a target folder:
 The CLI will create the following files and folder structure locally or at the target folder:
 
 ```text
+LICENSE
+README
+pyproject.toml
+MANIFEST.in
+setup.py
+buid.sh
 <package_name>/__init__.py
 <package_name>/version.py
 <package_name>/cmd/__init__.py
 <package_name>/cmd/root.py
-LICENSE
-README
-pyproject.toml
-setup.py
-buid.sh
+<package_name>/cmd/static/index.html
 ```
-## Sample Output
+
+## Sample Output from running the tool
 
 ```text
  tomifier init --output myproj1
@@ -48,7 +54,7 @@ Creating folder myproj1
 New project iniatialize at: myproj1
 ```
 
-## Generated `pyproject.toml` file
+## Sample generated `pyproject.toml` file
 
 ```toml
 [build-system]

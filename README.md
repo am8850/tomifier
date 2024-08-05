@@ -110,6 +110,8 @@ namespaces = false
 myproject1 = "myproject1.cmd.root:main"
 ```
 
+> **Note:** this is a starting `pyproject.toml` file. The contents of this file can be modified further to meet your needs.
+
 ## `build.sh`
 
 `build.sh` is a useful bash script to start the build process and deploy the package locally in editable mode. 

@@ -1,6 +1,13 @@
 LICENSE_TXT = "MIT License"
 
-README_MD = "Update this README.md with instructions for your package"
+README_MD = """# `<package_name>`
+
+Update this files with instructions for your package.
+
+## To run the package type:
+
+`<name> ui`
+"""
 
 MANIFEST = """include-recursive <name>/root/static *
 """

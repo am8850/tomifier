@@ -49,7 +49,8 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
 
         # # Create file from text
         write_bytes(f'{output_folder}/LICENSE', LICENSE_TXT)
-        write_bytes(f'{output_folder}/README.md', README_MD)
+        write_bytes(f'{output_folder}/README.md',
+                    README_MD.replace("<package_name>", package_name).replace("<name>", package_name_stripped))
         write_bytes(f'{output_folder}/MANIFEST.in',
                     MANIFEST.replace("<name>", package_name_stripped))
         write_bytes(f'{output_folder}/setup.py', SETUP_PY)

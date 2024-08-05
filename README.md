@@ -118,7 +118,11 @@ myproject1 = "myproject1.cmd.root:main"
 
 `build.sh` is a useful bash script to start the build process and deploy the package locally in editable mode. 
 
-To run it from a bash terminal type: `sh build.sh`
+To run it from a bash terminal type: 
+
+```bash
+sh build.sh
+```
 
 ## Pushing the file to pypi.org
 

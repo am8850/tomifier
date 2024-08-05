@@ -58,6 +58,8 @@ Creating folder myproj1
 New project iniatialize at: myproj1
 ```
 
+> **Note:** if you intend to deploy the package to pypi.org, make sure that the name is available. Even if it is available, the name could be too close to another name preventing posting. If you end up having to choose a different name, you will need to rename the package directory and the package name references in the `README.md`,`pyproject.toml` and `MANIFIST.in` files
+
 ## Sample generated `pyproject.toml` file
 
 ```toml
@@ -117,3 +119,12 @@ myproject1 = "myproject1.cmd.root:main"
 `build.sh` is a useful bash script to start the build process and deploy the package locally in editable mode. 
 
 To run it from a bash terminal type: `sh build.sh`
+
+## Pushing the file to pypi.org
+
+After building the package, to push the build to pypi.org. Type: 
+
+```bash
+pip install twine
+twine upload dis/*
+```

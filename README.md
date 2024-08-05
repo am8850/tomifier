@@ -3,7 +3,7 @@
 `pyproject.toml` is a modern way to create a python package. `tomifier` is CLI to initialize a simple Python pyproject.toml file and starting code. The starting code is itself a CLI that can launch a web application.
 
 References:
-[pyproject.toml vs setup.py](https://packaging.python.org/en/latest/guides/modernize-setup-py-project/)
+- [pyproject.toml vs setup.py](https://packaging.python.org/en/latest/guides/modernize-setup-py-project/)
 
 ## Installation
 
@@ -20,22 +20,26 @@ Initialize on target folder:
 Initialize with a project name and a target folder: 
 - `tomifier init --name myproject1 --output target_folder/`
 
-## Files created
+## 
 
 The CLI will create the following files and folder structure locally or at the target folder:
 
 ```text
-LICENSE
-README
-pyproject.toml
-MANIFEST.in
-setup.py
-buid.sh
-<package_name>/__init__.py
-<package_name>/version.py
-<package_name>/cmd/__init__.py
-<package_name>/cmd/root.py
-<package_name>/cmd/static/index.html
+.
+├── LICENSE
+├── MANIFEST.in
+├── README.md
+├── build.sh
+├── mypackage
+│   ├── __init__.py
+│   ├── cmd
+│   │   ├── __init__.py
+│   │   ├── root.py
+│   │   └── static
+│   │       └── index.html
+│   └── version.py
+├── pyproject.toml
+└── setup.py
 ```
 
 ## Sample Output from running the tool
@@ -108,4 +112,6 @@ myproject1 = "myproject1.cmd.root:main"
 
 ## `build.sh`
 
-`build.sh` is a useful bash script to start the build process and deploy the package locally in editable mode.
+`build.sh` is a useful bash script to start the build process and deploy the package locally in editable mode. 
+
+To run it from a bash terminal type: `sh build.sh`

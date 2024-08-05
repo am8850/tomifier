@@ -35,7 +35,7 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
         :param author: The author
         :param email: The email
         :param homepage: The homepage
-        :param description: The description    
+        :param description: The description
     """
     click.echo(f'Creating package: {package_name}')
 
@@ -83,21 +83,24 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
         validation = file_exits_validator(output_folder, package_name_stripped)
         if validation:
             if output_folder != ".":
-                click.echo(f"New project iniatialized at: {output_folder}")
+                click.echo(click.style(
+                    f"New project iniatialized at: {output_folder}", fg='green'))
             else:
-                click.echo("New project inialized")
+                click.echo(click.style("New project inialized", fg='green'))
         else:
-            click.echo("unable to initialize the project")
+            click.echo(click.style(
+                "unable to initialize the project", fg='red'))
             if output_folder != ".":
                 try:
                     shutil.rmtree(output_folder)
                 except:
-                    click.echo(f"Unable to delete the folder: {output_folder}")
+                    click.echo(click.style(
+                        f"Unable to delete the folder: {output_folder}", fg='red'))
 
 
-@click.command()
-@click.option('-n', '--name', default='', help='Package name')
-@click.option('-o', '--output', default='.', help='Target folder')
+@ click.command()
+@ click.option('-n', '--name', default='', help='Package name')
+@ click.option('-o', '--output', default='.', help='Target folder')
 def init(name: str, output: str):
     if not name:
         name = click.prompt('Package name', default='mypackage')

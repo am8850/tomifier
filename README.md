@@ -45,10 +45,9 @@ The CLI will create the following files and folder structure locally or at the t
 ## Sample Output from running the tool
 
 ```text
- tomifier init --output myproj1
+tomifier init -n my-project1 -o project1
 tomifier CLI
-Package name [mypackage]: myproject1
-Description [My package]: Description for myproject1
+Description [My package]: Description for the project.
 Author [Name]: 
 Author email [name@email.com]: 
 Homepage [https://github/usernane/repo]: 
@@ -68,7 +67,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "myproject1"
+name = "my-project1"
 authors = [
   { name="Name", email="name@email.com" },
 ]
@@ -85,7 +84,7 @@ classifiers = [
 dependencies = [
   "click",
   "fastapi",
-  "unvicorn[standard]"
+  "uvicorn[standard]"
 ]
 
 dynamic = ["version"]
@@ -126,9 +125,10 @@ sh build.sh
 
 ## Pushing the file to pypi.org
 
-After building the package, to push the build to pypi.org. Type: 
+After building the package, to push the build to pypi.org using twine. Type: 
 
 ```bash
 pip install twine
+# Make sure to get and install pypi.org token
 twine upload dis/*
 ```

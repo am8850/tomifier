@@ -4,7 +4,7 @@ from .initcmd import init
 
 @click.group()
 def cli():
-    click.echo("tomifier CLI")
+    click.echo(click.style("tomifier CLI", fg='yellow', bold=True))
 
 
 cli.add_command(init)

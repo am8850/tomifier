@@ -38,6 +38,7 @@ The CLI will create the following files and folder structure locally or at the t
 │   │   └── static
 │   │       └── index.html
 │   └── version.py
+├── requirements.txt
 ├── pyproject.toml
 └── setup.py
 ```

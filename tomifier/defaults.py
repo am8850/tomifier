@@ -1,16 +1,16 @@
 LICENSE_TXT = "MIT License"
 
-README_MD = """# `<package_name>`
+README_MD = '''# `<package_name>`
 
 Update this files with instructions for your package.
 
 ## To run the package type:
 
 `<name> ui`
-"""
+'''
 
-MANIFEST = """include-recursive <name>/root/static *
-"""
+MANIFEST = '''include-recursive <name>/root/static *
+'''
 
 PYPROJECT = '''[build-system]
 requires = ["setuptools", "setuptools-scm"]

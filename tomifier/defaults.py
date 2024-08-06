@@ -24,16 +24,14 @@ authors = [
 description = "<description>"
 readme = "README.md"
 license = { file="LICENSE" }
-requires-python = ">=3.10, <3.12"
+requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-
 dependencies = [
 <DEPS>]
-
 dynamic = ["version"]
 
 [tool.setuptools]
@@ -121,3 +119,5 @@ INDEX_HTML = '''<!DOCTYPE html>
 </body>
 </html>
 '''
+
+REQUIREMENTS_TXT = '''<DEPS>'''

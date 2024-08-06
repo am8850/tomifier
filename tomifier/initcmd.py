@@ -58,6 +58,9 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
                     BUILD_SCRIPT.replace("<name>", package_name_stripped))
 
         dependencies = __list_str(required_packages)
+        write_bytes(f'{output_folder}/requirements.txt',
+                    REQUIREMENTS_TXT.replace("<DEPS>", dependencies.replace('"', '').replace(',', '')))
+
         proj_toml = PYPROJECT.replace("<package_name>", package_name).replace("<author>", author).replace("<email>", email).replace(
             "<DEPS>", dependencies).replace("<home_page>", homepage).replace("<description>", description).replace("<name>", package_name_stripped)
         write_bytes(f'{output_folder}/pyproject.toml', proj_toml)
@@ -86,8 +89,12 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
             if output_folder != ".":
                 click.echo(click.style(
                     f"New project iniatialized at: {output_folder}", fg='green'))
+                click.echo(click.style(
+                    f"cd {output_folder}", fg='yellow'))
             else:
                 click.echo(click.style("New project inialized", fg='green'))
+            click.echo(click.style(
+                f"To build the project type: sh.build", fg='yellow'))
         else:
             click.echo(click.style(
                 "unable to initialize the project", fg='red'))

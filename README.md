@@ -1,6 +1,6 @@
 # tomifier
 
-`pyproject.toml` is a modern way to create a python package. `tomifier` is CLI to initialize a simple Python pyproject.toml file and starting code. The starting code is itself a CLI that can launch a web application.
+`pyproject.toml` is a modern way to create a Pathon package. `tomifier` is CLI to initialize a simple Python `pyproject.toml` file and starting code. The starting code is itself a CLI that can launch a FastAPI application.
 
 References:
 - [pyproject.toml vs setup.py](https://packaging.python.org/en/latest/guides/modernize-setup-py-project/)
@@ -20,17 +20,18 @@ Initialize on target folder:
 Initialize with a project name and a target folder: 
 - `tomifier init --name myproject1 --output target_folder/`
 
-## Created files
+## Scaffolded files
 
-The CLI will create the following files and folder structure locally or at the target folder:
+The CLI will scaffold the following files and folder structure at the current folder or at the given target folder:
 
 ```text
 .
+├── .gitignore
 ├── LICENSE
 ├── MANIFEST.in
 ├── README.md
 ├── build.sh
-├── mypackage
+├── mypackage1
 │   ├── __init__.py
 │   ├── cmd
 │   │   ├── __init__.py
@@ -38,24 +39,29 @@ The CLI will create the following files and folder structure locally or at the t
 │   │   └── static
 │   │       └── index.html
 │   └── version.py
-├── requirements.txt
 ├── pyproject.toml
+├── requirements.txt
 └── setup.py
 ```
 
-## Sample Output from running the tool
+## Sample run
+
+This is what a sample `tomifier` run looks like:
+
 
 ```text
 tomifier init -n my-project1 -o project1
 tomifier CLI
-Description [My package]: Description for the project.
+Description [My package]: Description for the project1.
 Author [Name]: 
 Author email [name@email.com]: 
 Homepage [https://github/usernane/repo]: 
 Comma separated packages (space=None) [click, fastapi, unvicorn[standard]]: 
 Creating package myproject1 in folder myproj1 with author Name and email name@email.com
 Creating folder myproj1
-New project iniatialize at: myproj1
+New project iniatialized at: project1
+cd project
+To build the project type: sh.build
 ```
 
 > **Note:** if you intend to deploy the package to pypi.org, make sure that the name is available. Even if it is available, the name could be too close to another name preventing posting. If you end up having to choose a different name, you will need to rename the package directory and the package name references in the `README.md`,`pyproject.toml` and `MANIFIST.in` files
@@ -112,11 +118,11 @@ namespaces = false
 myproject1 = "myproject1.cmd.root:main"
 ```
 
-> **Note:** this is a starting `pyproject.toml` file. The contents of this file can be modified further to meet your needs.
+> **Note:** the `pyproject.toml` contents of this file can be and most likely will need to be modified further to meet your needs.
 
-## `build.sh`
+## Building the project
 
-`build.sh` is a useful bash script to start the build process and deploy the package locally in editable mode. 
+`build.sh` is a useful bash script included as part of the scaffolded code to build and deploy the package locally in editable mode. 
 
 To run it from a bash terminal type: 
 
@@ -124,12 +130,25 @@ To run it from a bash terminal type:
 sh build.sh
 ```
 
+The bash script includes the following commands:
+
+```bash
+rm -rf dist
+pip uninstall <package_name> -y
+python -m build
+pip install -e .
+<package_name> ui
+```
+
 ## Pushing the file to pypi.org
 
 After building the package, to push the build to pypi.org using twine. Type: 
 
 ```bash
+# Verfify that the package name does not exist
+# Install twine
 pip install twine
 # Make sure to get and install pypi.org token
+# Publish the package
 twine upload dis/*
 ```

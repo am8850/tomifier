@@ -56,10 +56,10 @@ namespaces = false
 <name> = "<name>.cmd.root:main"
 '''
 
-BUILD_SCRIPT = '''# Build and install the package locally
-python -m build && pip install -e .
-
-# Test the package
+BUILD_SCRIPT = '''rm -rf dist
+pip uninstall <package_name> -y
+python -m build
+pip install -e .
 <name> ui
 '''
 
@@ -71,7 +71,7 @@ import os
 
 @click.group()
 def cli():
-    click.echo("mypackage CLI")
+    click.echo("<name> CLI")
 
 @cli.command()
 def ui():
@@ -121,3 +121,11 @@ INDEX_HTML = '''<!DOCTYPE html>
 '''
 
 REQUIREMENTS_TXT = '''<DEPS>'''
+
+GIT_IGNORE = '''__pycache__
+*.egg-info
+dist
+
+.venv
+.env
+'''

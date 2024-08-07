@@ -17,6 +17,7 @@ def file_exits_validator(output: str, name: str) -> bool:
         and os.path.isfile(f'{output}/MANIFEST.in') \
         and os.path.isfile(f'{output}/pyproject.toml') \
         and os.path.isfile(f'{output}/requirements.txt') \
+        and os.path.isfile(f'{output}/.gitignore') \
         and os.path.isfile(f'{output}/{name}/__init__.py') \
         and os.path.isfile(f'{output}/{name}/version.py') \
         and os.path.isfile(f'{output}/{name}/cmd/__init__.py') \

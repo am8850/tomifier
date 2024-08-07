@@ -55,7 +55,8 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
                     MANIFEST.replace("<name>", package_name_stripped))
         write_bytes(f'{output_folder}/setup.py', SETUP_PY)
         write_bytes(f'{output_folder}/build.sh',
-                    BUILD_SCRIPT.replace("<name>", package_name_stripped))
+                    BUILD_SCRIPT.replace("<name>", package_name_stripped).replace("<package_name>", package_name))
+        write_bytes(f'{output_folder}/.gitignore', GIT_IGNORE)
 
         dependencies = __list_str(required_packages)
         write_bytes(f'{output_folder}/requirements.txt',

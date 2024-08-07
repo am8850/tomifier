@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "my-package1"
+authors = [
+  { name="Name", email="name@email.com" },
+]
+description = "My package"
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "click",
+  "fastapi",
+  "uvicorn[standard]"
+]
+dynamic = ["version"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = "mypackage1.version.VERSION"}
+readme = {file = ["README.md"]}
+
+[tool.setuptools.packages.find]
+include = ["mypackage1*"]
+exclude = ["*.tests*"]
+namespaces = false
+
+[tool.setuptools.package-data]
+"mypackage1" = ["*.*"]
+
+[project.urls]
+"Homepage" = "https://github/usernane/repo"
+
+[project.scripts]
+mypackage1 = "mypackage1.cmd.root:main"

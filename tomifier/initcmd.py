@@ -95,7 +95,11 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
             else:
                 click.echo(click.style("New project inialized", fg='green'))
             click.echo(click.style(
-                f"To build the project type: sh.build", fg='yellow'))
+                f" - Review the generated code", fg='yellow'))
+            click.echo(click.style(
+                f" - Check the package requirements in pyproject.toml and requirements.txt", fg='yellow'))
+            click.echo(click.style(
+                f" - To build the project type: sh.build", fg='yellow'))
         else:
             click.echo(click.style(
                 "unable to initialize the project", fg='red'))

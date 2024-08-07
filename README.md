@@ -140,7 +140,7 @@ pip install -e .
 <package_name> ui
 ```
 
-## Pushing the file to pypi.org
+## Pushing the package to pypi.org
 
 After building the package, to push the build to pypi.org using twine. Type: 
 

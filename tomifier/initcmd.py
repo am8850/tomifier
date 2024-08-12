@@ -6,23 +6,25 @@ from .defaults import *
 from .fileutils import write_bytes, write_text
 from .validation import package_name_validator, file_exits_validator
 
+__DEFAULT_PACKAGES = 'click,fastapi,uvicorn[standard]'
 
-def __list_str(packages: list) -> str:
+
+def __list_str(packages: str) -> str:
     """
     Convert a list of packages to a string
         :param packages: The list of packages
         :return: The string of packages
     """
-    deps = ''
-    if packages.strip() != '':
-        dep_list = packages.split(',')
-        for i in range(len(dep_list)):
+    deps: str = ''
+    packages = __DEFAULT_PACKAGES + ',' + packages
+    dep_list: list[str] = packages.split(',')
+    for i in range(len(dep_list)):
+        dep: str = dep_list[i].strip()
+        if dep and dep != 'etc.':
             dep = dep_list[i].strip()
-            if dep != 'etc.':
-                dep = dep_list[i].strip()
-                deps += f'  "{dep}",\n'
-        # delete the last comma
-        deps = deps[:-2] + '\n'
+            deps += f'  "{dep}",\n'
+    # delete the last comma and new line
+    deps = deps[:-2] + '\n'
     return deps
 
 
@@ -91,7 +93,7 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
                 click.echo(click.style(
                     f"New project iniatialized at: {output_folder}", fg='green'))
                 click.echo(click.style(
-                    f"cd {output_folder}", fg='yellow'))
+                    f"Type: cd {output_folder}", fg='yellow'))
             else:
                 click.echo(click.style("New project inialized", fg='green'))
             click.echo(click.style(
@@ -114,7 +116,8 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
 @ click.command()
 @ click.option('-n', '--name', default='', help='Package name')
 @ click.option('-o', '--output', default='.', help='Target folder')
-def init(name: str, output: str):
+# @ click.option('--nogit', is_flag=True, help='Do not add gitignore to scaffolded code')
+def init(name: str, output: str) -> None:
     if not name:
         name = click.prompt('Package name', default='mypackage')
     if not package_name_validator(name):
@@ -122,12 +125,15 @@ def init(name: str, output: str):
             f"The package name '{name}' is invalid. A valid package name start with a letter, can have numbers, dashes, and underscores.")
         exit(1)
 
-    description = click.prompt('Description', default='My package')
-    author = click.prompt('Author', default='Name')
-    email = click.prompt('Author email', default='name@email.com')
-    homepage = click.prompt('Homepage', default='https://github/usernane/repo')
-    packages = click.prompt('Comma separated packages (space=None)',
-                            default='click, fastapi, uvicorn[standard]')
+    description: str = click.prompt('Description', default='My package')
+    author: str = click.prompt('Author', default='Name')
+    email: str = click.prompt('Author email', default='name@email.com')
+    homepage: str = click.prompt(
+        'Homepage', default='https://github.com/<usernane>/<repo>')
+    click.echo(click.style(
+        'The following packages will be added by default: click, fastapi, and uvicorn[standard]', fg='magenta'))
+    packages: str = click.prompt(
+        'Command separated list of additional packages', default=' ')
 
     confirm = click.confirm("Ready to inialize project. Proceed", default=True)
     if not confirm:

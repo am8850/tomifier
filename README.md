@@ -11,14 +11,14 @@ References:
 
 ## Usage
 
-Initialize on current Folder:
+Initialize a package in current Folder:
 - `tomifier init`
 
-Initialize on target folder: 
+Initialize a package at a target folder: 
 - `tomifier init -o target_folder/`
 
-Initialize with a project name and a target folder: 
-- `tomifier init --name myproject1 --output target_folder/`
+Initialize a package with a given package name and at a target folder: 
+- `tomifier init --name my-package1 --output target_folder/`
 
 ## Scaffolded files
 
@@ -51,7 +51,7 @@ This is what a sample `tomifier` run looks like:
 
 ```text
 tomifier CLI
-Description [My package]: Description for mypackage1                            
+Description [My package]: Description for my-package1                            
 Author [Name]: 
 Author email [name@email.com]: 
 Homepage [https://github.com/<usernane>/<repo>]: 
@@ -135,10 +135,10 @@ The bash script includes the following commands:
 
 ```bash
 rm -rf dist
-pip uninstall <package_name> -y
+pip uninstall mypackage1 -y
 python -m build
 pip install -e .
-<package_name> ui
+mypackage1 ui
 ```
 
 ## Pushing the package to pypi.org

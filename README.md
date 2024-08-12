@@ -77,14 +77,14 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "my-project1"
+name = "my-package1"
 authors = [
   { name="Name", email="name@email.com" },
 ]
-description = "Description for myproject1"
+description = "Description my-package1"
 readme = "README.md"
 license = { file="LICENSE" }
-requires-python = ">=3.10, <3.12"
+requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -101,22 +101,22 @@ dynamic = ["version"]
 include-package-data = true
 
 [tool.setuptools.dynamic]
-version = {attr = "myproject1.version.VERSION"}
+version = {attr = "mypackage1.version.VERSION"}
 readme = {file = ["README.md"]}
 
 [tool.setuptools.packages.find]
-include = ["myproject1*"]
+include = ["mypackage1*"]
 exclude = ["*.tests*"]
 namespaces = false
 
 [tool.setuptools.package-data]
-"myproject1" = ["*.*"]
+"mypackage1" = ["*.*"]
 
 [project.urls]
-"Homepage" = "https://github/usernane/repo"
+"Homepage" = "https://github.com/<usernane>/<repo>"
 
 [project.scripts]
-myproject1 = "myproject1.cmd.root:main"
+mypackage1 = "mypackage1.cmd.root:main"
 ```
 
 > **Note:** the `pyproject.toml` contents of this file can be and most likely will need to be modified further to meet your needs.

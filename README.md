@@ -50,18 +50,21 @@ This is what a sample `tomifier` run looks like:
 
 
 ```text
-tomifier init -n my-project1 -o project1
 tomifier CLI
-Description [My package]: Description for the project1.
+Description [My package]: Description for mypackage1                            
 Author [Name]: 
 Author email [name@email.com]: 
-Homepage [https://github/usernane/repo]: 
-Comma separated packages (space=None) [click, fastapi, unvicorn[standard]]: 
-Creating package myproject1 in folder myproj1 with author Name and email name@email.com
-Creating folder myproj1
-New project iniatialized at: project1
-cd project
-To build the project type: sh.build
+Homepage [https://github.com/<usernane>/<repo>]: 
+The following packages will be added by default: click, fastapi, and uvicorn[standard]
+Command separated list of additional packages [ ]: 
+Ready to inialize project. Proceed [Y/n]: 
+Creating package: my-package1
+Creating folder test1
+New project iniatialized at: test1
+Type: cd test1
+ - Review the generated code
+ - Check the package requirements in pyproject.toml and requirements.txt
+ - To build the project type: sh.build
 ```
 
 > **Note:** if you intend to deploy the package to pypi.org, make sure that the name is available. Even if it is available, the name could be too close to another name preventing posting. If you end up having to choose a different name, you will need to rename the package directory and the package name references in the `README.md`,`pyproject.toml` and `MANIFIST.in` files
@@ -87,13 +90,11 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-
 dependencies = [
   "click",
   "fastapi",
   "uvicorn[standard]"
 ]
-
 dynamic = ["version"]
 
 [tool.setuptools]
@@ -120,7 +121,7 @@ myproject1 = "myproject1.cmd.root:main"
 
 > **Note:** the `pyproject.toml` contents of this file can be and most likely will need to be modified further to meet your needs.
 
-## Building the project
+## Building the package
 
 `build.sh` is a useful bash script included as part of the scaffolded code to build and deploy the package locally in editable mode. 
 

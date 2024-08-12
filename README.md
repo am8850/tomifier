@@ -20,30 +20,6 @@ Initialize a package at a target folder:
 Initialize a package with a given package name and at a target folder: 
 - `tomifier init --name my-package1 --output target_folder/`
 
-## Scaffolded files
-
-The CLI will scaffold the following files and folder structure at the current folder or at the given target folder:
-
-```text
-.
-├── .gitignore
-├── LICENSE
-├── MANIFEST.in
-├── README.md
-├── build.sh
-├── mypackage1
-│   ├── __init__.py
-│   ├── cmd
-│   │   ├── __init__.py
-│   │   ├── root.py
-│   │   └── static
-│   │       └── index.html
-│   └── version.py
-├── pyproject.toml
-├── requirements.txt
-└── setup.py
-```
-
 ## Sample run
 
 This is what a sample `tomifier` run looks like:
@@ -68,6 +44,32 @@ Type: cd test1
 ```
 
 > **Note:** if you intend to deploy the package to pypi.org, make sure that the name is available. Even if it is available, the name could be too close to another name preventing posting. If you end up having to choose a different name, you will need to rename the package directory and the package name references in the `README.md`,`pyproject.toml` and `MANIFIST.in` files
+
+## Scaffolded files
+
+The CLI will scaffold the following files and folder structure at the current folder or at the given target folder:
+
+```text
+.
+├── .gitignore
+├── LICENSE
+├── MANIFEST.in
+├── README.md
+├── build.sh
+├── mypackage1
+│   ├── __init__.py
+│   ├── cmd
+│   │   ├── __init__.py
+│   │   ├── root.py
+│   │   └── static
+│   │       └── index.html
+│   └── version.py
+├── pyproject.toml
+├── requirements.txt
+└── setup.py
+```
+
+
 
 ## Sample generated `pyproject.toml` file
 

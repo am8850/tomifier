@@ -52,7 +52,7 @@ def add(file: str, prompt: str, endpoint: str, model: str) -> None:
                 if code:
                     code = code.replace('```', '').replace(
                         '```python', '').strip()
-                    click.echo(click.style(f"Code generated.", fg='green'))
+                    click.echo(click.style(f"code generated", fg='green'))
                     # click.echo(code)
                     write_text(file, code)
                 else:

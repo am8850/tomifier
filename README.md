@@ -1,8 +1,8 @@
 # tomifier
 
-`pyproject.toml` is a modern way to create a Python package. `tomifier` is CLI to initialize a simple Python `pyproject.toml` file and starting code. The starting code is itself a CLI that can launch a FastAPI application. 
+`pyproject.toml` is a modern configuration file to package and publish Python packages. `tomifier` is a command-line tool to help you initialize a simple Python project. This is similar to the way  you can initialize a package in npm with `npm init`. The starter code itsef is a command-line interface (CLI) that can launch a FastAPI application and it comes with all the settings and tools to package and publish the generated code as a package.
 
-If you have Ollama, `tomifier` also comes with code generation. You can ask it to create new files in your project and provide the Prompt to generate some code (see the `add` command usage below).
+If you have Ollama installed, `tomifier` now also offers code generation capabilities. You can use it to create new files in your project and/or generate code based on a prompt (see the `add` command usage details below).
 
 References:
 - [pyproject.toml vs setup.py](https://packaging.python.org/en/latest/guides/modernize-setup-py-project/)
@@ -22,17 +22,17 @@ Initialize a package at a target folder:
 Initialize a package with a given package name and at a target folder: 
 - `tomifier init --name my-package1 --output target_folder/`
 
-Add a file
+Add a file:
 - `tomifier add -f myproject1/services/service1.py`
 
-Add a file and generate Ollama code
+Add a file and generate Ollama code:
 - `tomifier add -f myproject1/services/service1.py -p "write a function to add two integers"`
 
 Sample output of creating a file and generating code:
 
 ```text
 File: myproject1/service1.py added
-Code generated.
+code generated
 ```
 
 ## Sample run

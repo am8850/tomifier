@@ -1,4 +1,4 @@
 rm -rf dist
-pip uninstall pyprojinit -y
+pip uninstall tomifier -y
 python -m build
 pip install -e .

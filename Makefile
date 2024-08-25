@@ -17,7 +17,7 @@ build:
 publish:
 	twine upload dist/*
 
-VERSION=0.0.4
+VERSION=0.0.6
 .PHONY: tag
 tag:
 	git tag -a v$(VERSION) -m "v$(VERSION)"

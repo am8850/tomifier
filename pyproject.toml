@@ -17,7 +17,8 @@ classifiers = [
 ]
 dependencies = [
     "click",
-    "build"
+    "build",
+    "requests"
 ]
 dynamic = ["version"]
 

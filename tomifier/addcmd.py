@@ -1,21 +1,36 @@
+import os
 import click
 import requests
 
 from tomifier.fileutils import write_text
 
 
+def create_folder_for_file(file: str) -> None:
+    """
+    Create a folder for the file
+        :param file: The file
+    """
+    folder = file.split('/')
+    if len(folder) > 1:
+        folder = '/'.join(folder[:-1])
+        if not folder:
+            return
+        if not os.path.exists(folder):
+            os.makedirs(folder, exist_ok=True)
+
+
 @click.command(help='Add a just a file or one from Ollama chat model generate code')
-@click.option('-f', '--file', default='test1/project1/test.py', help='File name')
-@click.option('-p', '--prompt', default='Write a function to find the 1001st prime number', help='Code generation prompt')
-@click.option('-e', '--endpoint', default='http://localhost:11434/v1/chat/completions', help='Ollama endpoint')
-@click.option('-m', '--model', default='llama3', help='Ollama chat model')
+@click.option('-f', '--file', default='', help='The file name')
+@click.option('-p', '--prompt', default='', help='Code Python generation prompt')
+@click.option('-e', '--endpoint', default='http://localhost:11434/v1/chat/completions', help='The Ollama endpoint')
+@click.option('-m', '--model', default='llama3', help='Ollama Chat model')
 def add(file: str, prompt: str, endpoint: str, model: str) -> None:
     if file:
         click.echo(click.style(f"File: {file} added", fg='yellow'))
+        create_folder_for_file(file)
         write_text(file, '')
         if model and prompt:
             try:
-                print(prompt, model, endpoint)
                 data = {
                     "model": model,
                     "messages": [
@@ -37,8 +52,8 @@ def add(file: str, prompt: str, endpoint: str, model: str) -> None:
                 if code:
                     code = code.replace('```', '').replace(
                         '```python', '').strip()
-                    click.echo(click.style(f"Code generated:", fg='green'))
-                    click.echo(code)
+                    click.echo(click.style(f"Code generated.", fg='green'))
+                    # click.echo(code)
                     write_text(file, code)
                 else:
                     raise Exception("")

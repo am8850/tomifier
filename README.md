@@ -1,6 +1,8 @@
 # tomifier
 
-`pyproject.toml` is a modern way to create a Pathon package. `tomifier` is CLI to initialize a simple Python `pyproject.toml` file and starting code. The starting code is itself a CLI that can launch a FastAPI application.
+`pyproject.toml` is a modern way to create a Pathon package. `tomifier` is CLI to initialize a simple Python `pyproject.toml` file and starting code. The starting code is itself a CLI that can launch a FastAPI application. 
+
+If you have Ollama, `tomifier` also comes with code generation. You can ask it to create new files in your project and provide the Prompt to generate some code (see the `add` command usage below).
 
 References:
 - [pyproject.toml vs setup.py](https://packaging.python.org/en/latest/guides/modernize-setup-py-project/)
@@ -20,6 +22,19 @@ Initialize a package at a target folder:
 Initialize a package with a given package name and at a target folder: 
 - `tomifier init --name my-package1 --output target_folder/`
 
+Add a file
+- `tomifier add -f myproject1/services/service1.py`
+
+Add a file and generate Ollama code
+- `tomifier add -f myproject1/services/service1.py -p "write a function to add two integers"`
+
+Sample output of creating a file and generating code:
+
+```text
+File: myproject1/service1.py added
+Code generated.
+```
+
 ## Sample run
 
 This is what a sample `tomifier` run looks like:
@@ -27,14 +42,14 @@ This is what a sample `tomifier` run looks like:
 
 ```text
 tomifier CLI
-Description [My package]: Description for my-package1                            
+Description [My package]: Description for myproject1
 Author [Name]: 
 Author email [name@email.com]: 
 Homepage [https://github.com/<usernane>/<repo>]: 
 The following packages will be added by default: click, fastapi, and uvicorn[standard]
 Command separated list of additional packages [ ]: 
 Ready to inialize project. Proceed [Y/n]: 
-Creating package: my-package1
+Creating package: my-project1
 Creating folder test1
 New project iniatialized at: test1
 Type: cd test1
@@ -51,12 +66,16 @@ The CLI will scaffold the following files and folder structure at the current fo
 
 ```text
 .
+├── .devcontainer
+│   └── devcontainer.json
+├── .github
+│   └── dependabot.yml
 ├── .gitignore
 ├── LICENSE
 ├── MANIFEST.in
 ├── README.md
 ├── build.sh
-├── mypackage1
+├── myproject1
 │   ├── __init__.py
 │   ├── cmd
 │   │   ├── __init__.py
@@ -69,6 +88,11 @@ The CLI will scaffold the following files and folder structure at the current fo
 └── setup.py
 ```
 
+The scaffolded files include:
+- The project files
+- The project publishing files including: `pyproject.toml, setup.py, MANIFEST.in, LICENSE, build.sh, and README.md`
+- The `devcontainer` and `dependabot` folders and files for VS Code
+- A `.gitignore` file
 
 ## Sample generated `pyproject.toml` file
 

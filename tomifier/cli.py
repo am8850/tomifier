@@ -1,5 +1,6 @@
 
 import click
+import requests
 from tomifier.addcmd import add
 from tomifier.fileutils import write_text
 from tomifier.initcmd import init
@@ -15,10 +16,8 @@ cli.add_command(add)
 
 
 def main():
-    add()
-    # cli()
+    cli()
 
 
 if __name__ == '__main__':
-    # add()
     main()

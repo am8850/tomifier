@@ -122,9 +122,9 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
                         f"Unable to delete the folder: {output_folder}", fg='red'))
 
 
-@ click.command(help='Initialize a new project')
-@ click.option('-n', '--name', default='', help='Package name')
-@ click.option('-o', '--output', default='.', help='Target folder')
+@click.command(help='Initialize a new project')
+@click.option('-n', '--name', default='', help='Package name')
+@click.option('-o', '--output', default='.', help='Target folder')
 # @ click.option('--nogit', is_flag=True, help='Do not add gitignore to scaffolded code')
 def init(name: str, output: str) -> None:
     if not name:

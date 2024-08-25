@@ -1,6 +1,6 @@
 # tomifier
 
-`pyproject.toml` is a modern way to create a Pathon package. `tomifier` is CLI to initialize a simple Python `pyproject.toml` file and starting code. The starting code is itself a CLI that can launch a FastAPI application. 
+`pyproject.toml` is a modern way to create a Python package. `tomifier` is CLI to initialize a simple Python `pyproject.toml` file and starting code. The starting code is itself a CLI that can launch a FastAPI application. 
 
 If you have Ollama, `tomifier` also comes with code generation. You can ask it to create new files in your project and provide the Prompt to generate some code (see the `add` command usage below).
 

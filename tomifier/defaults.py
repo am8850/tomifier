@@ -109,8 +109,12 @@ def ui(host:str, port:int):
 
     uvicorn.run(app, host=host, port=port)
 
-if __name__ == "__main__":
+
+def main():
     cli()
+
+if __name__ == "__main__":
+    main()
 '''
 
 VERSION_PY = '''version="0.0.1"

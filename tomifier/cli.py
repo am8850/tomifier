@@ -1,5 +1,8 @@
+
 import click
-from .initcmd import init
+from tomifier.addcmd import add
+from tomifier.fileutils import write_text
+from tomifier.initcmd import init
 
 
 @click.group()
@@ -8,11 +11,14 @@ def cli():
 
 
 cli.add_command(init)
+cli.add_command(add)
 
 
 def main():
-    cli()
+    add()
+    # cli()
 
 
 if __name__ == '__main__':
+    # add()
     main()

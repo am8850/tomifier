@@ -70,7 +70,6 @@ The CLI will scaffold the following files and folder structure at the current fo
 ```
 
 
-
 ## Sample generated `pyproject.toml` file
 
 ```toml

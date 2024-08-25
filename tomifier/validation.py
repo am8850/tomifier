@@ -22,4 +22,6 @@ def file_exits_validator(output: str, name: str) -> bool:
         and os.path.isfile(f'{output}/{name}/version.py') \
         and os.path.isfile(f'{output}/{name}/cmd/__init__.py') \
         and os.path.isfile(f'{output}/{name}/cmd/root.py') \
-        and os.path.isfile(f'{output}/{name}/cmd/static/index.html')
+        and os.path.isfile(f'{output}/{name}/cmd/static/index.html') \
+        and os.path.isfile(f'{output}/.devcontainer/devcontainer.json') \
+        and os.path.isfile(f'{output}/.github/dependabot.yml')

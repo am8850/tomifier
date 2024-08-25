@@ -88,12 +88,14 @@ from fastapi.staticfiles import StaticFiles
 import uvicorn
 import os
 
-@click.group()
+@click.group(help="<name> CLI")
 def cli():
     click.echo("<name> CLI")
 
-@cli.command()
-def ui():
+@cli.command(help="Start a fastapi server that serves both static and APIs")
+@click.option("--port", default=8000, help="Port number")
+@click.option("--host", default="127.0.0.1", help="Host address")
+def ui(host:str, port:int):
     app = fastapi.FastAPI()
     
     @app.get('/api/status')
@@ -105,13 +107,10 @@ def ui():
     print(static_foler)
     app.mount("/", StaticFiles(directory=static_foler,html = True), name="static")
 
-    uvicorn.run(app)
-
-def main():
-    cli()
+    uvicorn.run(app, host=host, port=port)
 
 if __name__ == "__main__":
-    main()
+    cli()
 '''
 
 VERSION_PY = '''version="0.0.1"
@@ -147,4 +146,56 @@ dist
 
 .venv
 .env
+'''
+
+DEV_CONTAINER_JSON = '''// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Python 3",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {}
+	},
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [
+	// 	8000
+	// ],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "pip3 install --user -r requirements.txt",
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.debugpy",
+				"ms-toolsai.jupyter",
+				"ms-toolsai.jupyter-keymap",
+				"ms-toolsai.vscode-jupyter-slideshow",
+				"ms-toolsai.jupyter-renderers",
+				"ms-toolsai.vscode-jupyter-cell-tags",
+				"otnettools.dotnet-interactive-vscode",
+				"ms-python.autopep8"
+			]
+		}
+	}
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
+'''
+
+DEPENDABOT_YML = '''# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for more information:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+# https://containers.dev/guide/dependabot
+
+version: 2
+updates:
+ - package-ecosystem: "devcontainers"
+   directory: "/"
+   schedule:
+     interval: weekly
 '''

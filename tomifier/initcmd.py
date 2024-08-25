@@ -86,6 +86,15 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
         write_bytes(
             f'{output_folder}/{package_name_stripped}/cmd/static/index.html', INDEX_HTML)
 
+        # devcontainer and dependabot
+        os.makedirs(f'{output_folder}/.devcontainer', exist_ok=True)
+        write_bytes(
+            f'{output_folder}/.devcontainer/devcontainer.json', DEV_CONTAINER_JSON)
+
+        os.makedirs(f'{output_folder}/.github', exist_ok=True)
+        write_bytes(
+            f'{output_folder}/.github/dependabot.yml', DEPENDABOT_YML)
+
         # report creation
         validation = file_exits_validator(output_folder, package_name_stripped)
         if validation:
@@ -113,7 +122,7 @@ def __process(package_name: str, output_folder: str, required_packages: list, au
                         f"Unable to delete the folder: {output_folder}", fg='red'))
 
 
-@ click.command()
+@ click.command(help='Initialize a new project')
 @ click.option('-n', '--name', default='', help='Package name')
 @ click.option('-o', '--output', default='.', help='Target folder')
 # @ click.option('--nogit', is_flag=True, help='Do not add gitignore to scaffolded code')
